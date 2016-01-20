@@ -16,6 +16,9 @@ Pot.App.Plan = Pot.App.Plan || {};
 $(document).ready(function () {
 
     // jQuery loaded
+    
+    var mainContent = $('div#content');
+    mainContent.load("partials/inputDate.html");
 
     // Buttons & Stuff
     $('li#link1').on("click", function () {
@@ -47,9 +50,6 @@ $(document).ready(function () {
         $(this).addClass('btn-lg');
         $(this).text("Neu Laden");
         
-        $('table#tableUser').show();       
-        $('table#mealTable').hide();
-        $('#row3').hide();
         
     });
     
@@ -66,10 +66,6 @@ $(document).ready(function () {
     // Functions
     function getTable() {
         
-        $('button#insertButton').hide();
-        $('table#tableUser').hide();
-        $('table#mealTable').hide(); 
-        $('div#startInput').hide();
         // get json file
         var data = $.getJSON("../lib/json/data.json", function (json) {
             console.log("App starting..");
