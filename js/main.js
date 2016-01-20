@@ -29,21 +29,19 @@ $(document).ready(function () {
         }, 0);
     });
     
-    $('button#mealButton').click(function() {
-        Pot.App.Table.potTable("createMealInput");
-        
-        //design stuff
-        $(this).removeClass('btn-default');
-        $(this).addClass('btn-success');
-        $('table#mealTable').show();
-        $('button#insertButton').show();
-        $(this).remove();
-        
-        
-    });
     
-    $('button#insertButton').click(function () {
-        Pot.App.Table.potTable("reloadTable");
+    $('div#content').on("click", "button#createButton", function() {
+        $('div#content').load("partials/inputWorker.html", function() {
+            Pot.App.Table.potTable("loadWorker");
+        });
+        
+    })
+    .on("click", "button#insertButton", function () {
+        Pot.App.Table.potTable("readWorker");
+        
+        $('div#content').load("partials/tableUser.html", function() {
+            Pot.App.Table.potTable("reloadTable");   
+        });    
         
         // design stuff
         $(this).removeClass('btn-default');
@@ -51,9 +49,8 @@ $(document).ready(function () {
         $(this).text("Neu Laden");
         
         
-    });
-    
-    $('table#tableUser').on("click", 'li.workers',function() {
+    })
+    .on("click", 'table#tableUser li.workers',function() {
         if($(this).hasClass("active")){
             Pot.App.Table.potTable("setNotActive", this);
             console.log("deactivate");           
@@ -76,11 +73,11 @@ $(document).ready(function () {
     function createMainObject(data) {
         Pot.App.Plan = new Pot.Plan(data);
     }
-
+    
     getTable().done(function (data) {
-        createMainObject(data.pot);
-        
-        Pot.App.Table = $('table#tableUser').potTable({worker: Pot.App.Plan.worker, month: 2});
-        console.log("App running.");
+            createMainObject(data.pot);        
+            Pot.App.Table = $('body').potTable({worker: Pot.App.Plan.worker, month: 1});
+            console.log("App running.");
     });
+
 });

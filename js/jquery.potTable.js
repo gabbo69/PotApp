@@ -33,7 +33,6 @@ $.widget("pot.potTable", {
         
         // create weekdays
         this._weekdays(currentMonth);            
-        this._createHtml();
 
         // reset
         this._reset();
@@ -136,32 +135,12 @@ $.widget("pot.potTable", {
     },
 
     _createHtml: function() {
-        var table = this.element.find('tbody');
+        var table = $('table#tableUser tbody');
         
         for(var i = 0; i < this.options.days; i++) {
             var row = this._createTableRow(i + 1);
             table.append(row);                
         }
-
-        table = $('table#' + this.options.inputTable + ' tbody');
-        for(var i = 0; i < this.options.worker.length; i++) {
-            worker = this.options.worker[i];
-            var row = this._createInputRow(worker);
-            table.append(row);
-            row = table.find("tr#"+ "row" + i);
-            row.data('worker', worker);
-            
-            // set default value on checkboxes
-            table.find('tr#' + "row"+ worker.id + ' td' + ' input.inputT').prop("checked", worker.theke);
-            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputK').prop("checked", worker.koch);
-            
-            // TEST VARIABLES
-            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMin').val('2');
-            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMax').val('2');
-            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputText').val('mo,di,mi,do,fr');
-            
-        }
-
     },
 
     _resetHtml: function() {
@@ -169,7 +148,6 @@ $.widget("pot.potTable", {
             var table = $("#tableDay" + (i+1) + " ul." + this.options.classes.workerList);
             table.empty();
         }
-        
     },
     
     _reset: function() {
@@ -301,15 +279,13 @@ $.widget("pot.potTable", {
        
     // ** public functions **
     reloadTable: function() {
-        // read input
-        this._read();
-        
         // reset frontend & backend
         this._reset();
         for(var i=1; i < this.options.days; i++){
             this.options.list[i+1].active = {theke: {}, koch: {}};
         }
-        this._resetHtml();
+        
+        this._createHtml();
         
         // rerun plan
         this._plan();
@@ -379,5 +355,31 @@ $.widget("pot.potTable", {
                 $("#mealTable" + ' tbody').append(item);
             }
         });
+    },
+    
+    loadWorker: function() {
+        var table = $('table#' + this.options.inputTable + ' tbody');
+        for(var i = 0; i < this.options.worker.length; i++) {
+            worker = this.options.worker[i];
+            var row = this._createInputRow(worker);
+            table.append(row);
+            row = table.find("tr#"+ "row" + i);
+            row.data('worker', worker);
+            
+            // set default value on checkboxes
+            table.find('tr#' + "row"+ worker.id + ' td' + ' input.inputT').prop("checked", worker.theke);
+            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputK').prop("checked", worker.koch);
+            
+            // TEST VARIABLES
+            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMin').val('2');
+            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMax').val('2');
+            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputText').val('mo,di,mi,do,fr');
+            
+        }
+    },
+    
+    readWorker: function() {
+        // read input
+        this._read();
     }
 });

@@ -24,14 +24,6 @@ p#kleingedrucktes {
   text-align: center;
   font-style: italic;
 }
-table#mealTable,
-button#mealButton,
-div#row3 div#row4 {
-  display: none;
-}
-table#tableUser {
-  display: none;
-}
 table#tableUser td.input {
   width: 100%;
 }
