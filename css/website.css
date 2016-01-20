@@ -1,0 +1,21 @@
+
+html {
+    background: url("../lib/images/pot.jpg") no-repeat center fixed;
+    background-size: cover;
+    opacity: 0.2;
+} 
+
+#header{
+    color:black;
+}
+
+div.transbox{
+    margin-top: 20px;
+    background-color: #000;
+    
+   
+    
+}
+#textbody{
+    
+}
