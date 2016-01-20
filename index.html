@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/jquery-ui.structure.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="styles/css/main.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="styles/css/jquery-ui.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="styles/css/jquery-ui.structure.min.css" type="text/css" media="screen" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -16,7 +16,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
 
-    <!-- navbar -->
+</head>
+
+<body>
+  
+   <!-- navbar -->
     <nav id="nav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -28,136 +32,11 @@
             </div>
         </div>
     </nav>
-
-</head>
-
-<body style="padding-top: 50px">
-
-
     <div class="container">
-
-        <!-- row 1: Überschrift -->
-        <div class="row" id="row1">
-            <div class="col-lg-12">
-                <h2 class="center">Monatsplan erstellen</h2>
-            </div>
-        </div>
         
-        <!-- row 2: Datumseingabe-->
-        <div class="row" id="startInput">
-            <div class="col-md-5"></div>
-            <div class="col-md-2">
-                <div>
-                    <form class="vertical">
-                        
-                        <div class="formgroup">
-                            <label for="month">Monat</label>
-                            <input type="number" class="form-control" placeholder="Monat (Zahl)" value ="1"/>
-                        </div>
-                        
-                         <div class="formgroup">
-                            <label for="year">Jahr</label>
-                            <input type="number" class="form-control" placeholder="Jahr" value ="2016"/>
-                        </div>
-                        
-                        <button style="margin-top: 20px;" id="createButton" type="button" class="btn btn-default btn-block">Erzeugen</button>
-                    </form> 
-                    
-                </div>
-            </div>
+        <div class="row" id="content">
+            <!-- MAINCONTENT -->    
         </div>
-
-
-
-
-        <!-- row 2: Monatsplan -->
-        <div class="row" id="row2">
-            <div class="col-lg-12">
-                <table id="tableUser" class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Datum</th>
-                            <th style="text-align: center">Gericht</th>
-                            <th style="text-align: center">Theke</th>
-                            <th style="text-align: center">Küche</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <!-- Fill the table -->
-                    </tbody>
-
-                </table>
-            </div>
-        </div>
-        
-        <!-- row 3 Syntaxregelen-->
-        <div class="row" id="row3">
-            <div class="col-md-4"></div>
-            <div id="syntax" class="col-md-4">
-                <h4 class="center" id="link1">Syntax</h4>
-                <p class="center">Keine Leerzeichen verwenden</p>
-                <p class="center">Angaben werden mit Kommata getrennt</p>
-                <p class="center">Es können Tage eingegeben werden</p>
-                <p class="center">Es können Wochentage eingegeben werden</p>
-                <p class="center">Jede Angabe kann mit '!' negiert werden</p>
-            </div>
-        </div>
-
-        <!-- row 4: inputTable Termine -->
-        <div class="row" id="row4" style="padding-top:30px">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <table class="table" id='inputTable'>
-                    <thead>
-
-                        <th>Mitarbeiter</th>
-                        <th>Tage</th>
-                        <th>Min. Anzahl</th>
-                        <th>Max. Anzahl</th>
-                        <th>T</th>
-                        <th>K</th>
-
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-
-        <!-- row 5: inputTable Rezepte-->
-        <div class="row" id="row5" style="padding-top:30px">
-            <div class="col-md-4"></div>
-            <div class="col-md-2">
-                <table class="table" id='mealTable'>
-                    <thead>
-
-                        <th>Mitarbeiter</th>
-                        <th>Rezepte</th>
-
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-
-
-
-
-            </div>
-        </div>
-
-        <!-- row 6: Buttons-->
-        <div class="row" id="row6" style="padding-top:30px">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-                <button id="mealButton" type="button" class="btn btn-primary btnblock" class="buttonBottom">Rezepte Hinzufügen</button>
-
-                <button id="insertButton" type="button" class="btn btn-primary btnblock">Monatsplan Generieren</button>
-
-            </div>
-        </div>
-
         <!-- row 7: Kleingedrucktes-->
         <div class="row" style="padding-top:30px">
             <p id="kleingedrucktes">Made in China. We copy all the time - you're still not allowed to copy bitch! Created for the one and only Potschamperl. Tested on Firefox and Chrome.

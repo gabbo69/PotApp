@@ -9,11 +9,13 @@ body {
   text-align: center;
 }
 nav#nav {
-  background-image: linear-gradient(to bottom, #ffffff 0px, #f98708 99%);
+  background-image: -webkit-linear-gradient(top, #f1ad63 0px, #f98708 99%);
+  background-image: linear-gradient(to bottom, #f1ad63 0px, #f98708 99%);
   box-shadow: 0px 1px 0px #ffffff inset, 0px 1px 30px rgba(96, 57, 6, 0.89);
   border-width: 0px 0px 0px;
 }
 nav#nav .active {
+  background-image: -webkit-linear-gradient(left, #ffffff 3px, rgba(255, 247, 239, 0.53) 100%);
   background-image: linear-gradient(to right, #ffffff 3px, rgba(255, 247, 239, 0.53) 100%);
 }
 p#kleingedrucktes {
