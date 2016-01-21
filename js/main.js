@@ -67,11 +67,9 @@ $(document).ready(function () {
     // activate or deactivate worker on click
     .on("click", 'table#tableUser li.workers',function() {
         if($(this).hasClass("active")){
-            Pot.App.Table.potTable("setNotActive", this);
-            console.log("deactivate");           
+            Pot.App.Table.potTable("setNotActive", this);           
         }else{
             Pot.App.Table.potTable("setActive", this);
-            console.log("setActive");
         }
     })
     
@@ -94,10 +92,8 @@ $(document).ready(function () {
             if (event.which == 13) {
                 event.preventDefault();
                 var element = ($(this).closest('tr').find('td input.inputK').prop('checked'));
-                console.log(element);
-                if($(this).closest('tr').find('td input.inputK').prop('checked')) {
+                if(element) {
                     Pot.App.Table.potTable("addMealRow", $(this).closest('tr'));
-                    console.log("success");
                 }
             }
     })

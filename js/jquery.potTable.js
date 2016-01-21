@@ -58,6 +58,8 @@ $.widget("pot.potTable", {
     },
 
     _plan: function () {
+        
+     //call save function every date from every worker
      for (var j = 0; j < this.options.worker.length; ++j) {
          var currentWorker = this.options.worker[j];
          var dates = currentWorker.text.split(",");
@@ -100,7 +102,8 @@ $.widget("pot.potTable", {
              }
          }
 
-     }
+    }
+        
  },
 
     _createTableRow: function(day) {
@@ -259,8 +262,7 @@ $.widget("pot.potTable", {
                     });
                 }
             }
-        }
-        
+        }       
         
     },
     
@@ -288,6 +290,18 @@ $.widget("pot.potTable", {
         console.log("potTable refreshed.");
 
     },
+    
+    _preSetTable: function (){
+        // if only one worker available set active
+        for(var i = 1; i < this.options.days; i++){
+            if(this.options.list[i].workers.theke.length == 1){
+                this.setActive($('tr#tableDay' + i+' ul.theke li.workers'));
+            }
+            if(this.options.list[i].workers.koch.length == 1){
+                this.setActive($('tr#tableDay' + i+' ul.koch li.workers'));
+            }
+        }
+    },
        
     // ** public functions **
     loadTable: function() {
@@ -297,6 +311,8 @@ $.widget("pot.potTable", {
         // rerun plan
         this._plan();
         
+        //preset table
+        this._preSetTable();
         
         console.log("potTable loaded.");
     },
