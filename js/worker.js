@@ -7,7 +7,7 @@ Pot.Worker = function(id,name, role) {
     this.text = "";
     this.min = 0;
     this.max = 0;
-}  
+};  
 
 Pot.Worker.prototype = {
     constructor: Pot.Worker,
@@ -22,7 +22,7 @@ Pot.Worker.prototype = {
     sayHello: function(){
         console.log("Hello");
     }
-}
+};
 
 
 Pot.Koch = function(name, role, meals) {
@@ -30,11 +30,11 @@ Pot.Koch = function(name, role, meals) {
     this.base(name, role);
     
     this.meals = meals;
-}  
+};  
 
 Pot.Koch.prototype = {
     constructor: Pot.Koch,
     getName: function() {
         return this.name;
     }
-}
+};

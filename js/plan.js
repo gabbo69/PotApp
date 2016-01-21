@@ -14,11 +14,11 @@ Pot.Plan = function(data) {
     }
     
     this.worker = data.worker;
-}  
+};  
 
 Pot.Plan.prototype = {
     constructor: Pot.Plan,
     getDay: function(day) {
         return this.days[day-1];
     }
-}
+};

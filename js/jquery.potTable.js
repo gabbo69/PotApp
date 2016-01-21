@@ -281,7 +281,7 @@ $.widget("pot.potTable", {
         //append rest of worker
         this._plan();
         this._loadMeals();
-        console.log("potTable refreshed.")
+        console.log("potTable refreshed.");
 
     },
        
@@ -304,7 +304,7 @@ $.widget("pot.potTable", {
         for(var i=1; i < this.options.days; i++){
             this.options.list[i+1].active = {theke: {}, koch: {}};
         }
-        console.log("potTable reset.")
+        console.log("potTable reset.");
         // reload table
         this.loadTable();
     },
