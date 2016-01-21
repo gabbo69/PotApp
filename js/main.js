@@ -19,7 +19,14 @@ $(document).ready(function () {
     
     // load html
     var mainContent = $('div#content');
-    mainContent.load("partials/inputDate.html");
+    mainContent.load("partials/inputDate.html", function () {
+        // @Gabo - Besser hierhin, du willst das ja auch ausführen nachdem der html teil geladen wurde.. ;)
+        var now = moment();
+        year = now.year();
+        month = now.month() + 2;
+        $("input#year").val(year);
+        $("input#month").val(month);
+    });
     
    
 
@@ -98,18 +105,6 @@ $(document).ready(function () {
           $( "table#inputTable input.inputMax" ).keydown();
     });
 });
-
-
-
-//pre set Date
-$( window ).load(function() {
-    var now = moment();
-    year = now.year();
-    month = now.month()+2;
-    $("input#year").val(year);
-    $("input#month").val(month);
-});
-
 
 // load json file
 function getTable() {
