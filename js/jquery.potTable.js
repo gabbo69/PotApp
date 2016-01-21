@@ -16,7 +16,8 @@ $.widget("pot.potTable", {
         worker: {},
         weekdays : {"so": [], "mo": [], "di": [], "mi": [], "do": [], "fr": [], "sa": []},
         days : 31,
-        month : 1,
+        month : 0,
+        year : 0,
         list : [],
         plan : [],
         classes: {'workerList': "workerList"}
@@ -25,7 +26,14 @@ $.widget("pot.potTable", {
     // Initial function
     _create: function() {
         var month = {};
-        var currentMonth = moment('01'+' 0'+this.options.month+' 2016', "DD MM YYYY");
+        var currentMonth = moment('01'+' 0'+this.options.month+' '+this.options.year, "DD MM YYYY");
+        
+        //set days with moments.js
+        var lastDayOfMonth = currentMonth.endOf('month').date();
+        this.options.days = lastDayOfMonth;
+        console.log("Jahr: " + this.options.year + " Monat: " + this.options.month + " Tage: " + this.options.days);
+        
+       
 
         for(var i = 0; i < this.options.days; i++) {
             this.options.list[i+1] = {workers: {theke: [], koch: []}, notWorkers: {theke: [], koch: []}, active: {theke: {}, koch: {}} };
@@ -103,17 +111,17 @@ $.widget("pot.potTable", {
         var th = ("0" + date.getDate()).slice(-2) + '.' + ("0" + (date.getMonth()+1)).slice(-2) + ' - ' + weekdays[date.getDay()] + '</th>';
 
         startRow += th;
-        var gericht = '<td><select id="gericht'+day+'"</select></td>';
+        var gericht = '<td class="col-md-4"><select id="gericht'+day+'"</select></td>';
 
         var theke =
-            '<td>' +
+            '<td class="col-md-3">' +
                 '<ul class="' + this.options.classes.workerList + ' theke">' +
                     // LI ELEMENT Theke
                 '</ul>' +
             '</td>';
         
         var koch =
-            '<td>' +
+            '<td class="col-md-3">' +
                 '<ul class="' + this.options.classes.workerList + ' koch">' +
                     // LI ELEMENT Koch
                 '</ul>' +
@@ -278,12 +286,7 @@ $.widget("pot.potTable", {
     },
        
     // ** public functions **
-    reloadTable: function() {
-        // reset frontend & backend
-        this._reset();
-        for(var i=1; i < this.options.days; i++){
-            this.options.list[i+1].active = {theke: {}, koch: {}};
-        }
+    loadTable: function() {
         
         this._createHtml();
         
@@ -291,7 +294,19 @@ $.widget("pot.potTable", {
         this._plan();
         
         
-        console.log("potTable reloaded.");
+        console.log("potTable loaded.");
+    },
+    
+    reloadTable: function() {
+        // reset frontend & backend
+        this._reset();
+        this._resetHtml();
+        for(var i=1; i < this.options.days; i++){
+            this.options.list[i+1].active = {theke: {}, koch: {}};
+        }
+        console.log("potTable reset.")
+        // reload table
+        this.loadTable();
     },
     
     setActive: function (item) {
@@ -337,44 +352,52 @@ $.widget("pot.potTable", {
         
     },
         
-    createMealInput: function(){
-        var element = $("#inputTable" + ' tr');
-        var go = false;
-        element.each( function(){
-            if($(this).find('input.inputK').prop("checked")){
-                var worker = $(this).data('worker');
-                var name = '<tr  id="rezeptRow' + worker.id + '" ><td>' + worker.name + '</td>';
-                var rezept = "<td>";
-                for (var i = 0; i < $(this).find('.inputMax').val(); i ++){
-                    rezept = rezept + '<input class="inputText" type="text"/>';
-                }
-                rezept = rezept + "</td>";
-                var item = jQuery(name + rezept);
-                item.data('worker', worker);
-                
-                $("#mealTable" + ' tbody').append(item);
-            }
-        });
+    
+    addMealRow: function(item){
+        var theWorker = item.data('worker');
+        var times = item.find('.inputMax').val();
+        var name = '<tr  id="rezeptRow' + theWorker.name + '" ><td>' + theWorker.name + '</td>';
+        
+        // add input for every meal
+        var rezept = "<td>";        
+        for (var i = 0; i < times ; i ++){
+            rezept = rezept + '<input class="inputText" type="text"/>';
+        }
+        rezept = rezept + "</td>";
+        var row = jQuery(name + rezept);
+        row.data('worker', theWorker);                
+        $("#mealTable" + ' tbody').append(row);
+        
+        
+        
     },
     
-    loadWorker: function() {
-        var table = $('table#' + this.options.inputTable + ' tbody');
-        for(var i = 0; i < this.options.worker.length; i++) {
+    deleteMealRow: function(item){
+        var theWorker = item.data('worker');
+        var deleteRow = $("#mealTable" + ' tbody').find('tr#rezeptRow'+theWorker.name);
+        if(!jQuery.isEmptyObject(deleteRow)){
+            deleteRow.remove();
+        }
+        
+    },
+    
+    loadWorker: function () {
+    var table = $('table#' + this.options.inputTable + ' tbody');
+        for (var i = 0; i < this.options.worker.length; i++) {
             worker = this.options.worker[i];
             var row = this._createInputRow(worker);
             table.append(row);
-            row = table.find("tr#"+ "row" + i);
+            row = table.find("tr#" + "row" + i);
             row.data('worker', worker);
-            
+
             // set default value on checkboxes
-            table.find('tr#' + "row"+ worker.id + ' td' + ' input.inputT').prop("checked", worker.theke);
+            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputT').prop("checked", worker.theke);
             table.find('tr#' + "row" + worker.id + ' td' + ' input.inputK').prop("checked", worker.koch);
-            
+
             // TEST VARIABLES
             table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMin').val('2');
             table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMax').val('2');
             table.find('tr#' + "row" + worker.id + ' td' + ' input.inputText').val('mo,di,mi,do,fr');
-            
         }
     },
     
