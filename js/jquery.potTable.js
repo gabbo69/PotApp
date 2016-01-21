@@ -291,19 +291,22 @@ $.widget("pot.potTable", {
 
     },
     
-    _preSetTable: function (){
+    
+    // ** public functions ** 
+    
+    preSetTable: function (){
         // if only one worker available set active
         for(var i = 1; i < this.options.days; i++){
-            if(this.options.list[i].workers.theke.length == 1){
+            var workers = this.options.list[i].workers
+            if(workers.theke.length == 1 ){
                 this.setActive($('tr#tableDay' + i+' ul.theke li.workers'));
             }
-            if(this.options.list[i].workers.koch.length == 1){
+            if(workers.koch.length == 1 ){
                 this.setActive($('tr#tableDay' + i+' ul.koch li.workers'));
             }
         }
     },
        
-    // ** public functions **
     loadTable: function() {
         
         this._createHtml();
@@ -312,7 +315,7 @@ $.widget("pot.potTable", {
         this._plan();
         
         //preset table
-        this._preSetTable();
+        this.preSetTable();
         
         console.log("potTable loaded.");
     },
@@ -436,5 +439,9 @@ $.widget("pot.potTable", {
     readWorker: function() {
         // read input
         this._read();
+    },
+    
+    getList: function() {
+        return this.options.list;
     }
 });
