@@ -298,15 +298,27 @@ $.widget("pot.potTable", {
     },
     
     reloadTable: function() {
-        // reset frontend & backend
+        
+        // reset workerlist
         this._reset();
+        
+        // reset html
         this._resetHtml();
+        
+        // reset active
         for(var i=1; i < this.options.days; i++){
             this.options.list[i+1].active = {theke: {}, koch: {}};
         }
-        console.log("potTable reset.");
+        
+        // reset count
+        for(var i=0; i < this.options.worker.length; i++){
+            this.options.list[i].count = 0;
+        }
+        
         // reload table
-        this.loadTable();
+        this._plan();
+        
+         console.log("potTable reloaded.");
     },
     
     setActive: function (item) {
