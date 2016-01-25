@@ -21,10 +21,6 @@ Pot.Plan = (function() {
     return this.day;
   };
 
-  Plan.prototype.setDay = function(day) {
-    return this.day = day;
-  };
-
   return Plan;
 
 })();

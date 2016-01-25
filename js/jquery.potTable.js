@@ -58,6 +58,8 @@ $.widget("pot.potTable", {
     },
 
     _plan: function () {
+        
+     //call save function every date from every worker
      for (var j = 0; j < this.options.worker.length; ++j) {
          var currentWorker = this.options.worker[j];
          var dates = currentWorker.text.split(",");
@@ -100,7 +102,8 @@ $.widget("pot.potTable", {
              }
          }
 
-     }
+    }
+        
  },
 
     _createTableRow: function(day) {
@@ -111,7 +114,15 @@ $.widget("pot.potTable", {
         var th = ("0" + date.getDate()).slice(-2) + '.' + ("0" + (date.getMonth()+1)).slice(-2) + ' - ' + weekdays[date.getDay()] + '</th>';
 
         startRow += th;
-        var gericht = '<td class="col-md-4"><select id="gericht'+day+'"</select></td>';
+        var meal = 	'<td class="col-md-4">' +
+					'<div class="dropdown">' +
+      				'<button class="btn btn-pot dropdown-toggle" type="button" id="dropdownMenuX" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' +
+        			'Meals<span class="caret"></span>' +
+					'</button>' + 
+					  '<ul class="dropdown-menu" aria-labelledby="dropdownMenuX">' + 
+						'<li><a href="#">some meal</a></li>' +
+					  '</ul>' + 
+					'</div></td>';
 
         var theke =
             '<td class="col-md-3">' +
@@ -129,8 +140,8 @@ $.widget("pot.potTable", {
 
 
         var endRow = '</tr>';
-
-        return startRow + gericht + theke + koch + endRow;
+		
+		return startRow + meal + theke + koch + endRow;
     },
 
     _createInputRow: function(theWorker) {
@@ -152,8 +163,12 @@ $.widget("pot.potTable", {
     },
 
     _resetHtml: function() {
+        
+        // reset workerList, notWorkerList, meal
         for(var i = 0; i < this.options.days; i++) {
             var table = $("#tableDay" + (i+1) + " ul." + this.options.classes.workerList);
+            table.empty();
+            table  = $('table#tableUser tbody tr').find('#meal'+ (i+1));
             table.empty();
         }
     },
@@ -171,7 +186,7 @@ $.widget("pot.potTable", {
         var table = $('table#' + this.options.inputTable + ' tbody tr');
         var base = this.options;
         
-        // read in
+        // read 
         table.each(function (i) {
             var id = $(this).attr("id").replace("row", "");
             var text = $(this).find(".inputText").val();
@@ -255,15 +270,14 @@ $.widget("pot.potTable", {
                     });
                 }
             }
-        }
-        
+        }       
         
     },
     
     _loadMeals: function(){
         for(var i = 1; i < this.options.days; i++){
             var koch = this.options.list[i].active.koch;
-            var element = $('table#tableUser tbody tr').find('#gericht'+i);
+            var element = $('table#tableUser tbody tr').find('#meal'+i);
             if(!jQuery.isEmptyObject(koch)){
                 for(var j = 0; j < koch.rezepte.length; j++){
                     element.append( new Option(koch.rezepte[j],koch.rezepte[j]));
@@ -284,8 +298,23 @@ $.widget("pot.potTable", {
         console.log("potTable refreshed.");
 
     },
+    
+    
+    // ** public functions ** 
+    
+    preSetTable: function (){
+        // if only one worker available set active
+        for(var i = 1; i < this.options.days; i++){
+            var workers = this.options.list[i].workers
+            if(workers.theke.length == 1 ){
+                this.setActive($('tr#tableDay' + i+' ul.theke li.workers'));
+            }
+            if(workers.koch.length == 1 ){
+                this.setActive($('tr#tableDay' + i+' ul.koch li.workers'));
+            }
+        }
+    },
        
-    // ** public functions **
     loadTable: function() {
         
         this._createHtml();
@@ -293,20 +322,34 @@ $.widget("pot.potTable", {
         // rerun plan
         this._plan();
         
+        //preset table
+        this.preSetTable();
         
         console.log("potTable loaded.");
     },
     
     reloadTable: function() {
-        // reset frontend & backend
+        
+        // reset workerlist
         this._reset();
+        
+        // reset html
         this._resetHtml();
+        
+        // reset active
         for(var i=1; i < this.options.days; i++){
             this.options.list[i+1].active = {theke: {}, koch: {}};
         }
-        console.log("potTable reset.");
+        
+        // reset count
+        for(var i=0; i < this.options.worker.length; i++){
+            this.options.worker[i].count = 0;
+        }
+        
         // reload table
-        this.loadTable();
+        this._plan();
+        
+         console.log("potTable reloaded.");
     },
     
     setActive: function (item) {
@@ -404,5 +447,9 @@ $.widget("pot.potTable", {
     readWorker: function() {
         // read input
         this._read();
+    },
+    
+    getList: function() {
+        return this.options.list;
     }
 });

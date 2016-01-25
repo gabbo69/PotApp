@@ -11,3 +11,5 @@ class Pot.Plan
             worker = new Pot.Worker worker.id, worker.name, worker.role
         
     getDay: -> @day
+    
+    setDay: (day) -> @day = day

@@ -1,3 +1,4 @@
+// out: ../css/website.css, autoprefixer: true, compress: false
 /*.jumbotron {
     position: relative;
     background: #000 url("../lib/images/pot.jpg") center center;
@@ -7,14 +8,18 @@
     
 }*/
 html {
-    background: url("../lib/images/pot.jpg") no-repeat center fixed;
+    background: url("../../lib/images/pot.jpg") no-repeat center fixed;
     background-size: cover;
+    z-index: 1;
+    opacity: 1;
 } 
 .container{
     
-    opacity:0.4;
     
 }
 #header{
     color:black;
+}
+#pimmel{
+    z-index: 3;
 }
