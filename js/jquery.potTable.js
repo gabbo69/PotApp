@@ -114,7 +114,15 @@ $.widget("pot.potTable", {
         var th = ("0" + date.getDate()).slice(-2) + '.' + ("0" + (date.getMonth()+1)).slice(-2) + ' - ' + weekdays[date.getDay()] + '</th>';
 
         startRow += th;
-        var meal = '<td class="col-md-4"><select id="meal'+day+'"</select></td>';
+        var meal = 	'<td class="col-md-4">' +
+					'<div class="dropdown">' +
+      				'<button class="btn btn-pot dropdown-toggle" type="button" id="dropdownMenuX" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' +
+        			'Meals<span class="caret"></span>' +
+					'</button>' + 
+					  '<ul class="dropdown-menu" aria-labelledby="dropdownMenuX">' + 
+						'<li><a href="#">some meal</a></li>' +
+					  '</ul>' + 
+					'</div></td>';
 
         var theke =
             '<td class="col-md-3">' +
@@ -132,8 +140,8 @@ $.widget("pot.potTable", {
 
 
         var endRow = '</tr>';
-
-        return startRow + meal + theke + koch + endRow;
+		
+		return startRow + meal + theke + koch + endRow;
     },
 
     _createInputRow: function(theWorker) {
