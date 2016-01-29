@@ -26,30 +26,16 @@ div#mainContainer {
 }
 
 nav#nav {
+//    background-image: linear-gradient(to bottom, #F1AD63 0px, #F98708 99%);
+//    box-shadow: 0px 0px 0px #FFF inset, 0px 1px 10px rgba(255, 210, 151, 0.77);
   background: @backgroundColor;
   border: 0;
   box-shadow: none;
-  
-  li {
-    border-bottom: 2px solid #333;
-    &.active,&:hover {
-      border-color: #F89406;
-    }
-    &:hover a {
-      background-color: #F89406;
-    }
-    
+  .active{
+//      background-image: linear-gradient(to right, #FFF 3px, rgba(255, 247, 239, 0.53) 100%);
   }
   .navbar-brand{
       color: #635A4A;
-    background-color: #333;
-    border-right: 2px solid white;
-    
-    &:hover {
-      svg#potschamperlOnlyP {
-        fill: #F89406;
-      }
-    }
   }
   
   .navbar-nav>.active>a, .navbar-nav>.open>a {
@@ -57,12 +43,6 @@ nav#nav {
     background-image: none;
     background-color: #333;
     color: white;
-    
-    transition: background-color 0.5s ease-out;
-    
-    &:hover {
-      background-color: #F89406;
-    }
   }
 }
 
@@ -187,12 +167,4 @@ div#logo {
     animation-timing-function: ease-out;
     animation-fill-mode: none;
   }
-}
-
-svg#potschamperlOnlyP {
-  width: 50px;
-  height: 100px;
-  margin-top: -33px;
-  margin-left: -20px;
-  fill: white;
 }

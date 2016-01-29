@@ -40,23 +40,8 @@ nav#nav {
   border: 0;
   box-shadow: none;
 }
-nav#nav li {
-  border-bottom: 2px solid #333;
-}
-nav#nav li.active,
-nav#nav li:hover {
-  border-color: #F89406;
-}
-nav#nav li:hover a {
-  background-color: #F89406;
-}
 nav#nav .navbar-brand {
   color: #635A4A;
-  background-color: #333;
-  border-right: 2px solid white;
-}
-nav#nav .navbar-brand:hover svg#potschamperlOnlyP {
-  fill: #F89406;
 }
 nav#nav .navbar-nav > .active > a,
 nav#nav .navbar-nav > .open > a {
@@ -64,12 +49,6 @@ nav#nav .navbar-nav > .open > a {
   background-image: none;
   background-color: #333;
   color: white;
-  -webkit-transition: background-color 0.5s ease-out;
-          transition: background-color 0.5s ease-out;
-}
-nav#nav .navbar-nav > .active > a:hover,
-nav#nav .navbar-nav > .open > a:hover {
-  background-color: #F89406;
 }
 p#kleingedrucktes {
   position: fixed;
@@ -170,11 +149,4 @@ div#logo:hover {
 }
 div#logo:hover svg g#potschamperl {
   fill: #F89406;
-}
-svg#potschamperlOnlyP {
-  width: 50px;
-  height: 100px;
-  margin-top: -33px;
-  margin-left: -20px;
-  fill: white;
 }
