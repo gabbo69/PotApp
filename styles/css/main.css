@@ -126,10 +126,6 @@ table#tableUser ul.workerList li.notWorkers {
 table#mealTable td input {
   margin-bottom: 5px;
 }
-div#draggable {
-  background-color: antiquewhite;
-  box-sizing: content-box;
-}
 div#logo {
   position: absolute;
   right: 150px;

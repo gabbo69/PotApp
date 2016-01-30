@@ -1,0 +1,7 @@
+{"pot":{"worker":[
+    {"id":0,"name":"Gabo","theke":true,"koch":false,"rezepte":[]},
+    {"id":1,"name":"Julian","theke":false,"koch":true,"rezepte":[]},
+    {"id":2,"name":"Simone","theke":true,"koch":false,"rezepte":[]},
+    {"id":3,"name":"Kev","theke":false,"koch":true,"rezepte":[]},
+    {"id":4,"name":"Nic","theke":false,"koch":true,"rezepte":[]}
+]}}

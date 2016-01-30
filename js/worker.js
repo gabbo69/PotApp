@@ -1,12 +1,12 @@
 var Pot = Pot || {}; // Pot: Class, Worker, Monatsplan
 
-Pot.Worker = function(id,name, role) {
+Pot.Worker = function(id,name,text,min,max) {
     this.id=id;
     this.name = name;
-    this.role = role;
-    this.text = "";
-    this.min = 0;
-    this.max = 0;
+    
+    this.text = text;
+    this.min = min;
+    this.max = max;
 };  
 
 Pot.Worker.prototype = {

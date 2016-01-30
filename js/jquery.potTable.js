@@ -438,9 +438,9 @@ $.widget("pot.potTable", {
             table.find('tr#' + "row" + worker.id + ' td' + ' input.inputK').prop("checked", worker.koch);
 
             // TEST VARIABLES
-            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMin').val('2');
-            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMax').val('2');
-            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputText').val('mo,di,mi,do,fr');
+            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMin').val(worker.min);
+            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputMax').val(worker.max);
+            table.find('tr#' + "row" + worker.id + ' td' + ' input.inputText').val(worker.dates);
         }
     },
     
