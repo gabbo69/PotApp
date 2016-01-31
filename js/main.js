@@ -72,7 +72,6 @@ $(document).ready(function () {
             Pot.App.Table.potTable("setNotActive", this);           
         }else{
             Pot.App.Table.potTable("setActive", this);
-            Pot.App.Table.potTable("preSetTable");
         }
         
         
@@ -105,20 +104,7 @@ $(document).ready(function () {
     .on("click", 'table#inputTable input.inputMax',function() {
           $( "table#inputTable input.inputMax" ).keydown();
     })
-    .on("click", 'button#saveJSONButton',function() {
-        var file = Pot.App.Table.potTable("getList");
-        var json = JSON.stringify(file);
-    
-        var data = "text/json;charset=utf-8," + encodeURIComponent(file);
-        console.log(data);
-        var a = document.createElement('a');
-        a.href = 'data:' + data;
-        a.download = 'data.json';
-        a.innerHTML = 'download';
-
-        var container = document.getElementById('saveJSON');
-        container.appendChild(a);
-    });
+   
 });
 
 // load json file
@@ -135,10 +121,4 @@ function createMainObject(data) {
         Pot.App.Plan = new Pot.Plan(data);
 }
 
-function saveText(text, filename){
-  var a = document.createElement('a');
-  a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
-  a.setAttribute('download', filename);
-  a.click();
-}
 
