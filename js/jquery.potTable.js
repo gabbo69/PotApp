@@ -217,7 +217,21 @@ $.widget("pot.potTable", {
 
     // * reset functions *
     _resetFrontend: function () {
-
+		
+		
+		/*
+		**
+		** @TODO Gabo
+		** 
+		** Warum nicht mit einer each schleife über die Selektoren 
+		** Bsp. $("ul." + this.options.classes.workerList).each -> 
+		** 	$this.attr('id').substr(..,..) === "tableDay" -> // wobei das nur gebraucht wird wenn es auch andere ul mit dieser Klasse gibt die du nicht ansprichst
+		** 		$this.empty
+		**
+		** just an idea
+		**
+		*/
+		
         // reset workerList, notWorkerList, meal
         for (var i = 0; i < this.options.days; i++) {
             var table = $("#tableDay" + (i + 1) + " ul." + this.options.classes.workerList);
@@ -317,7 +331,9 @@ $.widget("pot.potTable", {
     _read: function () {
         var table = $('table#' + this.options.inputTable + ' tbody tr');
         var base = this.options;
- 
+ 		
+		// @TODO Gabo: warum nicht direkt setzen, macht es auch schneller im Prinzip
+		
         table.each(function (i) {
             var text = $(this).find(".inputText").val();
             var max = $(this).find(".inputMax").val();
@@ -331,6 +347,7 @@ $.widget("pot.potTable", {
                 });
             }
             
+			// das setzt doch direkt oben
             base.worker[i].text = text;
             base.worker[i].max = max;
             base.worker[i].theke = theke;
