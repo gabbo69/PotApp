@@ -5,41 +5,95 @@
   }
   @page {
   }
+  div#mainContainer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .center {
+    text-align: center;
+  }
   nav#nav {
     display: none;
   }
   p#kleingedrucktes {
     display: none;
   }
-  table#tableUser {
-    border-color: black;
+  .btn-pot {
+    display: none;
+  }
+  .form-control,
+  input {
+    background-color: #f2f1ef !important;
+    border-color: #333 !important;
+    color: #333 !important;
+  }
+  input {
+    border-radius: 4px;
+    padding: 6px 12px;
+    border-width: 1px;
   }
   table#tableUser thead th {
-    font-size: 15px;
-    border-color: black;
-  }
-  table#tableUser tbody {
-    border-color: black;
+    font-size: 18px;
   }
   table#tableUser td .select {
-    display: none;
+    width: 100%;
   }
   table#tableUser tr,
   table#tableUser td,
   table#tableUser th {
     vertical-align: middle;
-    border-color: black;
   }
-  table#tableUser ul.workerList li.active {
-    font-weight: bold;
+  table#tableUser tr {
+    cursor: pointer;
   }
-  table#tableUser ul.workerList li.notWorkers {
-    display: none;
+  table#tableUser ul.workerList {
+    list-style: none;
+    background-color: white;
+  }
+  table#tableUser ul.workerList li {
+    display: inline-block;
+    width: 100%;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 3px 0px;
+    padding: 4px 0px;
+    border: 1px solid transparent;
+  }
+  table#tableUser ul.workerList li:hover {
+    background-color: rgba(0, 0, 0, 0.5);
   }
   table#tableUser ul.workerList li.workers {
+    background-color: white;
     display: none;
   }
+  table#tableUser ul.workerList li.workers.active {
+    display: inline-block;
+  }
+  table#mealTable td input {
+    margin-bottom: 5px;
+  }
   div#logo {
-    display: none;
+    position: absolute;
+    right: 150px;
+    top: 0px;
+    width: 300px;
+    display: block;
+  }
+  div#logo:hover {
+    -webkit-animation-name: zoomOutIn;
+            animation-name: zoomOutIn;
+    -webkit-animation-duration: 0.4s;
+            animation-duration: 0.4s;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: none;
+            animation-fill-mode: none;
+  }
+  div#logo:hover svg g#potschamperl {
+    fill: #F89406;
   }
 }

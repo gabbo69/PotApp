@@ -4,8 +4,16 @@
 	body {
 		background: white;
 	}
-	@page {
-		
+	@page {}
+	div#mainContainer {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+	.bold {
+		font-weight: bold;
+	}
+	.center {
+		text-align: center;
 	}
 	nav#nav {
 		display: none;
@@ -13,43 +21,88 @@
 	p#kleingedrucktes {
 		display: none;
 	}
+	.btn-pot {
+		display: none;
+	}
+	.form-control,
+	input {
+		background-color: @backgroundColor !important;
+		border-color: #333 !important;
+		color: #333 !important;
+	}
+	input {
+		border-radius: 4px;
+		padding: 6px 12px;
+		border-width: 1px;
+	}
 	table#tableUser {
-		border-color: black;
 		thead {
 			th {
-				font-size: 15px;
-				border-color: black;
+				font-size: 18px;
 			}
-		}
-		tbody {
-			border-color: black;
 		}
 		td {
 			.select {
-				display: none;
+				width: 100%;
 			}
 		}
 		tr,
 		td,
 		th {
 			vertical-align: middle;
-			border-color: black;
+		}
+		tr {
+			cursor: pointer;
 		}
 		ul.workerList {
+			list-style: none;
+			background-color: white;
 			li {
-				&.active {
-					font-weight: bold;
-				}
-				&.notWorkers {
-					display: none;
+				display: inline-block;
+				width: 100%;
+				line-height: 30px;
+				text-align: center;
+				background-color: rgba(0, 0, 0, 0.1);
+				margin: 3px 0px;
+				padding: 4px 0px;
+				border: 1px solid transparent;
+				
+				&:hover {
+					background-color: rgba(0, 0, 0, 0.5);
 				}
 				&.workers {
+					background-color: white;
 					display: none;
+					&.active {
+						display: inline-block;
+					}
 				}
 			}
 		}
 	}
+	table#mealTable {
+		td {
+			input {
+				margin-bottom: 5px;
+			}
+		}
+	}
 	div#logo {
-		display: none;
+		position: absolute;
+		right: 150px;
+		top: 0px;
+		width: 300px;
+		display: block;
+		&:hover {
+			svg {
+				g#potschamperl {
+					fill: #F89406;
+				}
+			}
+			animation-name: zoomOutIn;
+			animation-duration: 0.4s;
+			animation-timing-function: ease-out;
+			animation-fill-mode: none;
+		}
 	}
 }
