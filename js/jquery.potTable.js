@@ -23,7 +23,7 @@ $.widget("pot.potTable", {
             "fr": [],
             "sa": []
         },
-        days: 31,
+        days: 0,
         month: 0,
         year: 0,
 
@@ -83,14 +83,10 @@ $.widget("pot.potTable", {
         var th = ("0" + date.getDate()).slice(-2) + '.' + ("0" + (date.getMonth() + 1)).slice(-2) + ' - ' + weekdays[date.getDay()] + '</th>';
 
         startRow += th;
-        var meal = '<td class="col-md-4">' +
-            '<div class="dropdown">' +
-            '<button class="btn btn-pot dropdown-toggle" type="button" id="dropdownMenuX" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">' +
-            'Rezepte<span class="caret"></span>' +
-            '</button>' +
-            '<ul class="dropdown-menu" aria-labelledby="dropdownMenuX">' +
-            '</ul>' +
-            '</div></td>';
+        var meal = '<td class="col-md-4">' +      
+                '<div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
+                '<span data-bind="label">Rezepte</span>&nbsp;<span class="caret"></span></button>'+
+                 '<ul class="dropdown-menu" role="menu"></ul></div></td>';
 
         var theke =
             '<td class="col-md-3">' +
@@ -144,35 +140,35 @@ $.widget("pot.potTable", {
     _createFrontend: function () {
         var list = this.options.list;
         var table = $('table#tableUser');
-       
+        
        
         for (var i = 0; i < list.length; i++) {
-            
+
             var elementT = table.find("tr#tableDay" + (i + 1) + " ul.theke");
             var elementK = table.find("tr#tableDay" + (i + 1) + " ul.koch");
             var elementM = table.find("tr#tableDay" + (i + 1) + " ul.dropdown-menu");
-            
-            
+
+
             // alert if position is can not be filled
-            if(list[i].workers.theke.length == 0){
+            if (list[i].workers.theke.length == 0) {
                 elementT.parent().addClass("danger");
-                window.alert("Keine Thekenkraft am " + (i+1) + "ten! ");
+                //window.alert("Keine Thekenkraft am " + (i+1) + "ten! ");
             }
-            if(list[i].workers.koch.length == 0){
+            if (list[i].workers.koch.length == 0) {
                 elementK.parent().addClass("danger");
-                window.alert("Keine Küchenkraft am " + (i+1) + "ten! ");
+                //window.alert("Keine Küchenkraft am " + (i+1) + "ten! ");
             }
+
             // setActive if only one available
-            
-            if(list[i].workers.theke.length == 1){
-                list[i].workers.theke[0].count ++;
+            if (list[i].workers.theke.length == 1) {
+                list[i].workers.theke[0].count++;
                 list[i].active.theke = list[i].workers.theke[0];
             }
-            if(list[i].workers.koch.length == 1){
-                ist[i].workers.koch[0].count ++;
+            if (list[i].workers.koch.length == 1) {
+                ist[i].workers.koch[0].count++;
                 list[i].active.koch = list[i].workers.koch[0];
             }
-            
+
             // set active elements
             var theke = list[i].active.theke;
             if (!jQuery.isEmptyObject(theke)) {
@@ -186,29 +182,58 @@ $.widget("pot.potTable", {
                 var listItemK = jQuery('<li class="workers active">' + koch.name + ' ' + koch.count + '/' + koch.max + '</li>');
                 listItemK.data('worker', list[i].active.koch);
                 elementK.append(listItemK);
-                
+
                 for (var m = 0; m < koch.rezepte.length; m++) {
                     var listItemM = jQuery('<li><a href="#">' + koch.rezepte[m] + '</a></li>');
                     elementM.append(listItemM);
                 }
-                
             }
-            
+
             // set unactive elements
             theke = list[i].workers.theke;
+            var notTheke = list[i].notWorkers.theke;
+            
+
             for (var j = 0; j < theke.length; j++) {
+                var not = false;
+                //  if has dates left and not active
                 if (theke[j].max > theke[j].count && theke[j].id != list[i].active.theke.id) {
-                    var listItemT = jQuery('<li class="workers">' + theke[j].name + ' ' + theke[j].count + '/' + theke[j].max + '</li>');
-                    listItemT.data('worker', theke[j]);
-                    elementT.append(listItemT);
+                    for (var n = 0; n < notTheke.length; n++) {
+                        
+                        if (notTheke[n].id == theke[j].id) {
+                            not = true;
+                        }
+                    }
+
+                    // if not in notWorker 
+                    if (!not) {
+                        var listItemT = jQuery('<li class="workers">' + theke[j].name + ' ' + theke[j].count + '/' + theke[j].max + '</li>');
+                        listItemT.data('worker', theke[j]);
+                        elementT.append(listItemT);
+                    }
                 }
             }
+
             koch = list[i].workers.koch;
+            var notKoch = list[i].notWorkers.koch;
+            
             for (var k = 0; k < koch.length; k++) {
+                var not = false;
+                // if has dates left and not active
+                
                 if (koch[k].max > koch[k].count && koch[k].id != list[i].active.koch.id) {
-                    var listItemK = jQuery('<li class="workers">' + koch[k].name + ' ' + koch[k].count + '/' + koch[k].max + '</li>');
-                    listItemK.data('worker', koch[k]);
-                    elementK.append(listItemK);
+                    for (var n = 0; n < notKoch.length; n++) {         
+                        if (notKoch[n].id == koch[k].id) {
+                            not = true;                            
+                        }
+                    }
+
+                    // if not in notWorker
+                    if (!not) {
+                        var listItemK = jQuery('<li class="workers">' + koch[k].name + ' ' + koch[k].count + '/' + koch[k].max + '</li>');
+                        listItemK.data('worker', koch[k]);
+                        elementK.append(listItemK);
+                    }
                 }
             }
         }
@@ -217,27 +242,14 @@ $.widget("pot.potTable", {
 
     // * reset functions *
     _resetFrontend: function () {
-		
-		
-		/*
-		**
-		** @TODO Gabo
-		** 
-		** Warum nicht mit einer each schleife über die Selektoren 
-		** Bsp. $("ul." + this.options.classes.workerList).each -> 
-		** 	$this.attr('id').substr(..,..) === "tableDay" -> // wobei das nur gebraucht wird wenn es auch andere ul mit dieser Klasse gibt die du nicht ansprichst
-		** 		$this.empty
-		**
-		** just an idea
-		**
-		*/
-		
+
         // reset workerList, notWorkerList, meal
         for (var i = 0; i < this.options.days; i++) {
             var table = $("#tableDay" + (i + 1) + " ul." + this.options.classes.workerList);
             table.empty();
             var meals = $("#tableDay" + (i + 1) + " ul.dropdown-menu")
             meals.empty();
+            this.options.list[i].active.meal = {};
         }
     },
 
@@ -284,7 +296,7 @@ $.widget("pot.potTable", {
         //call save function every date from every worker
         for (var j = 0; j < this.options.worker.length; ++j) {
             var currentWorker = this.options.worker[j];
-            var dates = currentWorker.text.split(",");
+            var dates = currentWorker.dates.split(",");
             var max = currentWorker.max;
             // <-- work on input **
             var isNot = false;
@@ -331,9 +343,7 @@ $.widget("pot.potTable", {
     _read: function () {
         var table = $('table#' + this.options.inputTable + ' tbody tr');
         var base = this.options;
- 		
-		// @TODO Gabo: warum nicht direkt setzen, macht es auch schneller im Prinzip
-		
+ 
         table.each(function (i) {
             var text = $(this).find(".inputText").val();
             var max = $(this).find(".inputMax").val();
@@ -347,8 +357,7 @@ $.widget("pot.potTable", {
                 });
             }
             
-			// das setzt doch direkt oben
-            base.worker[i].text = text;
+            base.worker[i].dates = text;
             base.worker[i].max = max;
             base.worker[i].theke = theke;
             base.worker[i].koch = kueche;
@@ -373,7 +382,7 @@ $.widget("pot.potTable", {
                 entryT = list[day - 1].notWorkers.theke;
             }
             if (isKoch) {
-                entryK = list[day - 1].notWorkers.theke;
+                entryK = list[day - 1].notWorkers.koch;
             }
 
             // "can" entry
@@ -455,6 +464,15 @@ $.widget("pot.potTable", {
         console.log("potTable reloaded.");
 
     },
+    
+    setMeal: function(element){
+        var currentDay = $(element).closest('tr').attr('id');  
+        currentDay = currentDay.replace("tableDay","");
+        
+        this.options.list[currentDay - 1].active.meal = $(element).text();
+        console.log(this.options.list[currentDay - 1].active.meal);
+        
+    },
 
     setActive: function (item) {
         var theWorker = $(item).data('worker');
@@ -505,13 +523,14 @@ $.widget("pot.potTable", {
         var theWorker = $(item).data('worker');
 
         theWorker.count --;
+        
 
         if ($(item).closest('ul').hasClass("theke")) {
-            this.options.list[currentDay - 1].active.theke = {};           
+            this.options.list[currentDay - 1].active.theke = {};
         } else {
             this.options.list[currentDay - 1].active.koch = {};
         }
-
+        
         //update
         this._updateTable();
 
@@ -539,5 +558,55 @@ $.widget("pot.potTable", {
     readWorker: function () {
         // read input
         this._read();
+    },
+    
+    getFile: function() {
+        var object = {pot:{month:{},year:{},days:{},worker:{},list:{}}};
+        object.pot.month=(this.options.month);
+        object.pot.year=(this.options.year);
+        object.pot.days=(this.options.days);
+        object.pot.worker=(this.options.worker);
+        object.pot.list=(this.options.list);
+        
+        return object;
+    },
+    
+    setList: function(list){
+        this.options.list = list;
+        this._createUserTable();
+        this._updateTable();
+    
+    },
+    
+    loadPreviewTable: function () {
+        var list = this.options.list;
+        var numberToWeek = ["so", "mo", "di", "mi", "do", "fr", "sa"];
+        for(var i = 0; i < list.length; i++){
+            
+            var day;
+            var datum;
+            day = moment( i+1 + " " + this.options.month + ' ' + this.options.year, "DD MM YYYY");
+            var weekday = numberToWeek[(day.day()) % 7]; 
+            
+            
+            if(weekday == "sa" || weekday == "so"){
+                datum = '<tr class="info"><td>'+(i+1)+'. '+weekday+'</td>';
+            } else{
+                datum = '<tr><td>'+(i+1)+'. '+weekday+'</td>';            
+            }
+            var art = '<td><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
+                '<span data-bind="label">art</span>&nbsp;<span class="caret"></span></button>'+
+                 '<ul class="dropdown-menu" role="menu">'+'<li><img href="#"  width="50%" height="50%" src="../lib/images/animals/chicken.svg" alt="chicken"></li>'+'</ul></div>';
+            var gericht = '<input type= "text" value="'+list[i].active.meal+'"></input><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
+                '<span data-bind="label"></span>&nbsp;<span class="caret"></span></button>'+
+                 '<ul class="dropdown-mealsort" role="menu"></ul></div></td>';
+            var theke = '<td><input type= "text" value="'+list[i].active.theke.name+'"></input></td>';
+            var koch = '<td><input type= "text" value="'+list[i].active.koch.name+'"></input></td></tr>';
+            var row = datum + art + gericht + theke + koch;
+            
+            $('table#tablePreview tbody').append(row);
+        }
+        
+        
     }
 });
