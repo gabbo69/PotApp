@@ -1,62 +1,55 @@
 // out: ../css/print.css, autoprefixer: true, compress: false
-@backgroundColor: #F2F1EF;
-body { 
-    background: @backgroundColor !important;
+@media print {
+	@backgroundColor: #F2F1EF;
+	body {
+		background: white;
+	}
+	@page {
+		
+	}
+	nav#nav {
+		display: none;
+	}
+	p#kleingedrucktes {
+		display: none;
+	}
+	table#tableUser {
+		border-color: black;
+		thead {
+			th {
+				font-size: 15px;
+				border-color: black;
+			}
+		}
+		tbody {
+			border-color: black;
+		}
+		td {
+			.select {
+				display: none;
+			}
+		}
+		tr,
+		td,
+		th {
+			vertical-align: middle;
+			border-color: black;
+		}
+		ul.workerList {
+			li {
+				&.active {
+					font-weight: bold;
+				}
+				&.notWorkers {
+					display: none;
+				}
+				&.workers {
+					display: none;
+				}
+			}
+		}
+	}
+	div#logo {
+		display: none;
+	}
 }
-
-nav#nav {
-    display: none;
-}
-
-p#kleingedrucktes {
-    display: none;
-}
-
-table#tableUser {
-    border-color: black;
-    
-    thead {
-        th {
-            font-size: 15px;
-            border-color: black;
-        }
-    }
-    
-    tbody {
-        border-color: black;
-    }
-    
-    td {
-        .select{
-            display: none;
-        }
-    }
-  
-  tr, td, th {
-    vertical-align: middle;
-    border-color: black;
-  }
-  
-
-  ul.workerList {
-    
-    li { 
-        
-        &.active {
-          font-weight: bold;
-        }
-        &.notWorkers {
-            display: none;          
-        }
-      
-        &.workers{
-          display: none;
-        }
-    }
-  }
-}
-
-
-div#logo {
-  display: none;
-    }

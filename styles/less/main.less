@@ -1,167 +1,161 @@
 // out: ../css/main.css, autoprefixer: true, compress: false
-
 @backgroundColor: #F2F1EF;
-
 @keyframes zoomOutIn {
-    0%, 100% {transform: scale(1.0);}
-    50% {transform: scale(1.1);}
+	0%,
+	100% {
+		transform: scale(1.0);
+	}
+	50% {
+		transform: scale(1.1);
+	}
 }
 
-body { 
-    padding-top: 100px;
-  background: @backgroundColor !important;
+body {
+	padding-top: 100px;
+	background: @backgroundColor !important;
 }
 
 div#mainContainer {
-  padding-top: 50px;
-  padding-bottom: 50px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 .bold {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .center {
-    text-align: center;
+	text-align: center;
 }
 
 nav#nav {
-//    background-image: linear-gradient(to bottom, #F1AD63 0px, #F98708 99%);
-//    box-shadow: 0px 0px 0px #FFF inset, 0px 1px 10px rgba(255, 210, 151, 0.77);
-  background: @backgroundColor;
-  border: 0;
-  box-shadow: none;
-  .active{
-//      background-image: linear-gradient(to right, #FFF 3px, rgba(255, 247, 239, 0.53) 100%);
-  }
-  .navbar-brand{
-      color: #635A4A;
-  }
-  
-  .navbar-nav>.active>a, .navbar-nav>.open>a {
-    box-shadow: none;
-    background-image: none;
-    background-color: #333;
-    color: white;
-  }
+	//    background-image: linear-gradient(to bottom, #F1AD63 0px, #F98708 99%);
+	//    box-shadow: 0px 0px 0px #FFF inset, 0px 1px 10px rgba(255, 210, 151, 0.77);
+	background: @backgroundColor;
+	border: 0;
+	box-shadow: none;
+	.active {
+		//      background-image: linear-gradient(to right, #FFF 3px, rgba(255, 247, 239, 0.53) 100%);
+	}
+	.navbar-brand {
+		color: #635A4A;
+	}
+	.navbar-nav>.active>a,
+	.navbar-nav>.open>a {
+		box-shadow: none;
+		background-image: none;
+		background-color: #333;
+		color: white;
+	}
 }
 
-
 p#kleingedrucktes {
-  position: fixed;
-  bottom: 0px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: #333;
-  text-align: center;
-  font-style: italic;
+	position: fixed;
+	bottom: 0px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	color: #333;
+	text-align: center;
+	font-style: italic;
 }
 
 .btn-pot {
-  color: #333;
-  background-color: @backgroundColor;
-  border-color: #333 !important;
+	color: #333;
+	background-color: @backgroundColor;
+	border-color: #333 !important;
 }
-.form-control, input {
-  background-color: @backgroundColor !important;
-  border-color: #333 !important;
-  color: #333 !important;
+
+.form-control,
+input {
+	background-color: @backgroundColor !important;
+	border-color: #333 !important;
+	color: #333 !important;
 }
 
 input {
-    border-radius: 4px;
-    padding: 6px 12px;
-    border-width: 1px;
+	border-radius: 4px;
+	padding: 6px 12px;
+	border-width: 1px;
 }
 
 table#tableUser {
-    
-  thead {
-    th {
-      font-size: 18px;
-    }
-  }
-  td {
-    .select{
-      width: 100%;
-    }
-  }
-  
-  tr, td, th {
-    vertical-align: middle;
-  }
-  
-  tr {
-    cursor: pointer;
-  }
-
-  ul.workerList {
-    list-style:none;
-    li {
-      display: inline-block;
-      width: 100%;
-      line-height: 30px;
-      text-align: center;
-      background-color: rgba(0,0,0,0.1);
-      margin: 3px 0px;
-      padding: 4px 0px;
-      border: 1px solid transparent;
-
-      &:hover {
-        background-color: rgba(0,0,0,0.5);
-      }
-
-      &.workers {
-        background-color: @backgroundColor;
-        border-color: #333;
-        color: #333;
-        border-radius: 4px;
-        transition: all 0.5s ease-out;
-        &.active, &:hover {
-          border-color: #2ECC71;
-          background-color: #2ECC71;
-          color: white;
-          font-weight: bold;
-        }
-      }
-
-      &.notWorkers {
-        background-color: #c31515;
-      }
-    }
-  }
+	thead {
+		th {
+			font-size: 18px;
+		}
+	}
+	td {
+		.select {
+			width: 100%;
+		}
+	}
+	tr,
+	td,
+	th {
+		vertical-align: middle;
+	}
+	tr {
+		cursor: pointer;
+	}
+	ul.workerList {
+		list-style: none;
+		li {
+			display: inline-block;
+			width: 100%;
+			line-height: 30px;
+			text-align: center;
+			background-color: rgba(0, 0, 0, 0.1);
+			margin: 3px 0px;
+			padding: 4px 0px;
+			border: 1px solid transparent;
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+			&.workers {
+				background-color: @backgroundColor;
+				border-color: #333;
+				color: #333;
+				border-radius: 4px;
+				transition: all 0.5s ease-out;
+				&.active,
+				&:hover {
+					border-color: #2ECC71;
+					background-color: #2ECC71;
+					color: white;
+					font-weight: bold;
+				}
+			}
+			&.notWorkers {
+				background-color: #c31515;
+			}
+		}
+	}
 }
-
 
 table#mealTable {
-    
-    td {
-        input {
-            margin-bottom:5px;
-        }
-    }
+	td {
+		input {
+			margin-bottom: 5px;
+		}
+	}
 }
 
-
-
 div#logo {
-  position: absolute;
-  right: 150px;
-  top: 0px;
-  width: 300px;
-  display: block;
-  
-  &:hover {
-    svg {
-      g#potschamperl {
-          fill: #F89406;
-      }
-    }
-    
-    animation-name: zoomOutIn;
-    animation-duration: 0.4s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: none;
-  }
+	position: absolute;
+	right: 150px;
+	top: 0px;
+	width: 300px;
+	display: block;
+	&:hover {
+		svg {
+			g#potschamperl {
+				fill: #F89406;
+			}
+		}
+		animation-name: zoomOutIn;
+		animation-duration: 0.4s;
+		animation-timing-function: ease-out;
+		animation-fill-mode: none;
+	}
 }
