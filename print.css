@@ -4,16 +4,17 @@ body {
   margin: 0;
   padding: 0;
   text-align: justify;
-  prince-image-resolution: 166dpi;
   -webkit-hyphens: auto;
      -moz-hyphens: auto;
       -ms-hyphens: auto;
           hyphens: auto;
-  prince-text-replace: " – " "—";
 }
 @page {
   size: 21cm 29.7cm;
   margin: 0;
+  prince-bleed: 0mm;
+  prince-image-resolution: 300dpi;
+  font-family: sans-serif;
 }
 .page {
   page-break-before: always;
@@ -23,9 +24,35 @@ body {
   height: 29.7cm;
 }
 #mainPage {
-  background-image: url('month.svg');
+  background-image: url('month3.svg');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% auto;
+}
+#header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5cm;
+  background-color: #F9690E;
+}
+#header #logo {
+  position: absolute;
+  top: -1cm;
+  left: 4cm;
+  width: 13cm;
+  height: 20cm;
+  background-image: url('lib/images/Pot-Logo.svg');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2cm;
+  background-color: #F9690E;
 }
 #logo {
   position: absolute;
@@ -36,10 +63,10 @@ body {
 }
 table {
   position: absolute;
-  width: 14cm;
+  width: 16cm;
   height: auto;
-  left: 3.5cm;
-  top: 8cm;
+  left: 2.5cm;
+  top: 6cm;
   border: 1px solid #ddd;
   margin: 0;
   padding: 0;
@@ -61,27 +88,42 @@ table tr {
   vertical-align: inherit;
   border-color: inherit;
 }
+table tr.weekend {
+  background-color: #ffc582;
+  color: black;
+}
 table td {
   border: 1px solid #ddd;
   height: 0.4cm;
-  line-height: 0.4cm;
-  vertical-align: middle;
 }
 table td.number {
   background-color: black;
   border-color: black;
   color: white;
-  width: 1cm;
+  width: 0.2cm;
+  border-right-color: white;
+  text-align: right;
+}
+table td.day {
+  background-color: #ffc582;
+  border-color: #ffc582;
+  border-left-color: white;
+  color: black;
+  width: 0.2cm;
+  text-align: left;
+}
+table td.koch,
+table td.theke {
+  width: 2.5cm;
 }
 table td div.gericht {
-  display: inline-block;
   background-repeat: no-repeat;
-  background-size: auto 100%;
-  width: 0.5cm;
-  height: 0.4cm;
+  background-size: auto 70%;
+  background-position: center left;
+  width: 100%;
+  height: 100%;
   padding-top: 0.05cm;
-  padding-left: 0.6cm;
-  margin-left: -0.5cm;
+  padding-left: 0.5cm;
 }
 table td div.gericht.pic {
   background-image: url('lib/images/animals/pic.svg');
@@ -101,6 +143,7 @@ table th {
   margin: 0;
   padding: 0.06cm 0.13cm;
   vertical-align: middle;
+  line-height: 0.4cm;
   text-align: center;
 }
 table input {
