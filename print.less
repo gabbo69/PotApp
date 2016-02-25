@@ -1,0 +1,116 @@
+// out: print.css, autoprefixer: true, compress: false
+html,
+body {
+	margin: 0;
+	padding: 0;
+	text-align: justify;
+	prince-image-resolution: 166dpi;
+	hyphens: auto;
+	prince-text-replace: " – " "—";
+}
+
+@page {
+	size: 21cm 29.7cm;
+	margin: 0;
+}
+
+.page {
+	page-break-before: always;
+	position: relative;
+	overflow: hidden;
+	width: 21cm;
+	height: 29.7cm;
+}
+
+#mainPage {
+	background-image: url('month.svg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+#logo {
+	position: absolute;
+	top: 0cm;
+	right: 1cm;
+	width: 5cm;
+	height: auto;
+}
+
+table {
+	position: absolute;
+	width: 14cm;
+	height: auto;
+	left: 3.5cm;
+	top: 8cm;
+	border: 1px solid #ddd;
+	margin: 0;
+	padding: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	background-color: rgba(255, 255, 255, 0.6);
+	font-size: 10pt;
+	thead {
+		display: table-header-group;
+		vertical-align: middle;
+		border-color: inherit;
+	}
+	th {
+		height: 0.6cm;
+	}
+	tr {
+		display: table-row;
+		vertical-align: inherit;
+		border-color: inherit;
+	}
+	td {
+		border: 1px solid #ddd;
+		height: 0.4cm;
+		line-height: 0.4cm;
+		vertical-align: middle;
+		
+		&.number {
+			background-color: black;
+			border-color: black;
+			color: white;
+			width: 1cm;
+		}
+		div.gericht {
+			display: inline-block;
+			background-repeat: no-repeat;
+			background-size: auto 100%;
+
+			width: 0.5cm;
+			height: 0.4cm;
+			
+			padding-top: 0.05cm;
+			padding-left: 0.6cm;
+			
+			margin-left: -0.5cm;
+			
+			&.pic {
+				background-image: url('lib/images/animals/pic.svg');
+			}
+			&.chicken {
+				background-image: url('lib/images/animals/chicken.svg');
+			}
+			&.fish {
+				background-image: url('lib/images/animals/fish.svg');
+			}
+			&.cow {
+				background-image: url('lib/images/animals/cow.svg');
+			}
+		}
+	}
+	td,
+	th {
+		display: table-cell;
+		margin: 0;
+		padding: 0.06cm 0.13cm;
+		vertical-align: middle;
+		text-align: center;
+	}
+	input {
+		border: none;
+		padding: 0;
+	}
+}
