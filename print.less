@@ -34,67 +34,77 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 6cm;
-	background-color: #F9690E;
-    background: linear-gradient(#F9690E, #feefe6);
+	height: 5.5cm;
+	background-color: #f9931b;
+    //background: linear-gradient(#F9690E, #feefe6);
 	
 	#logo {
 		position: absolute;
-		top: -1cm;
-		left: 4cm;
+		top: -2cm;
+		left: 3cm;
 		width: 15cm;
-		height: 22cm;
+		height: 10cm;
 		background-image: url('lib/images/Pot-Logo.svg');
 		background-repeat: no-repeat;
 		background-size: 100% auto;
 	}
     #month {
         position: absolute;
-		top: 4cm;
-        width:100%;
+		top: 3.5cm;
+        width: 100%;
         height: auto;
         text-align: center;
         font-size: 35px;
         font-weight: bold;
     }
+	
 }
-
+#ohauslogo {
+		position: absolute;
+		top: 0.7cm;
+		right: 1.7cm;
+		width: 2.5cm;
+		height: 10cm;
+		background-image: url('lib/images/ohauslogo2.svg');
+		background-repeat: no-repeat;
+		background-size: 100% auto;
+	}
 #footer {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 100%;
 	height: 4cm;
-    background: linear-gradient(#fcb183,#F9690E);
-    border-top-color: #fcb183;
+    background: #f9931b;
     
     #open{
         position: absolute;
-        bottom: 1cm;
+        bottom: 0.4cm;
         width: 100%;
         height: auto;
         text-align: center;
-        font-size: 25px;
+        font-size: 12pt;
         font-family: inherit;
-        font-weight: bold;
-        
     }
     #facebook{
         position: absolute;
-        bottom: 3cm;
-        left: 7.25cm;
-        width: 6.25cm;
-        
-        height: auto;
+        bottom: 0.8cm;
+        left: 1.3cm;
+        width: auto;
+		
+        height: 2cm;
         text-align: center;
-        font-size: 25px;
+		line-height: 1cm;
+		vertical-align: middle;
+        font-size: 18pt;
         font-family: inherit;
         font-weight: bold;
         background-image: url('lib/images/fb-logo.svg');
         background-position: left;
-        background-size: 0.95cm auto;
+        background-size: auto 1cm;
         background-repeat: no-repeat;
-        
+        padding-left: 1cm;
+		padding-top: 1.2cm;
     }
 }
 
@@ -106,48 +116,52 @@ table {
 	height: auto;
 	left: 1.5cm;
 	top: 6cm;
-	border: 0.7px solid #D2D7D3;
+	border: 1px solid transparent;
 	margin: 0;  
 	padding: 0; 
 	border-spacing: 0;
 	border-collapse: collapse;
-	background-color: #fee0cd;  /* rgba(255, 255, 255, 0.6);*/
+	  /* rgba(255, 255, 255, 0.6);*/
 	font-size: 10pt;
 	thead {
 		display: table-header-group;
 		vertical-align: middle;
-		border-color: inherit;
+	}
+	tbody {
+		background-color: rgba(249, 147, 27, 0.3);
 	}
 	th {
 		height: 0.6cm;
-        background-color: white;
+		background-color: #f9931b;
+		border: 1px solid transparent;
+		border-bottom-color: white;
 	}
 	tr {
 		display: table-row;
 		vertical-align: inherit;
-		border-color: inherit;
+//		border-color: white;
 		
 		&.weekend {
-			background-color: #ffc582;
+			background-color: rgba(249, 147, 27, 0.7);
 			color: black;
-            
 		}
 	}
 	td {
-		border: 1px solid #ddd;
+		border: 1px solid transparent;
 		height: 0.4cm;
 		
+		
 		&.number {
-			background-color: #D35400;
-			color: white;
+			background-color: #f9931b;
 			width: 0.2cm;
 			border-right-color: white;
 			text-align: right;
+			font-weight: bold;
 		}
 		
 		&.day {
-			background-color: #F5AB35;
-			border-left-color: white;
+			background-color: rgba(249, 147, 27, 0.7);
+//			border-left-color: white;
 			color: black;
 			width: 0.2cm;
 			text-align: left;
@@ -157,31 +171,30 @@ table {
 		&.theke {
 			width: 3cm;
 		}
-        &.aktion{
-                background-repeat: no-repeat;
-			    background-size: 21%,21%;
-                background-position: center left;
-                border-color: #D2D7D3;
-            
-            
-            
-            &.party {
-                background-color:#e05906;//#d91e18;
-                font-weight: bold;
-            }
-            &.cl {
-                background-image: url('lib/images/cl-logo.svg');
-                text-align: right;
-            }
-            &.cocktail {
-                background-image: url('lib/images/cocktail.svg');
-                text-align:right;
-            }
-            &.jamsession {
-                background-image: url('lib/images/jamsession.svg');
-                text-align:right;
-            }
-            
+        &.aktion {
+        	background-repeat: no-repeat;
+        	background-size: auto 60%;
+        	background-position: center left;
+			
+        	&.party {
+        		background-color: rgb(206, 113, 5); //#d91e18;
+//        		font-weight: bold;
+        	}
+			
+        	&.cl {
+        		background-image: url('lib/images/cl-logo.svg');
+        		text-align: right;
+        	}
+			
+        	&.cocktail {
+        		background-image: url('lib/images/cocktail.svg');
+        		text-align: right;
+        	}
+			
+        	&.jamsession {
+        		background-image: url('lib/images/jamsession.svg');
+        		text-align: right;
+        	}
         }
 		
 		div.gericht {
@@ -207,9 +220,9 @@ table {
 			&.cow {
 				background-image: url('lib/images/animals/cow.svg');
 			}
-            &.veg {
-                background-image: url('lib/images/animals/veg.svg');
-            }
+//            &.veg {
+//                background-image: url('lib/images/animals/veg.svg');
+//            }
 		}
 	}
 	td,
