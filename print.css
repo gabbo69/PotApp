@@ -24,7 +24,6 @@ body {
   height: 29.7cm;
 }
 #mainPage {
-  background-image: url('month3.svg');
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
@@ -33,46 +32,78 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 5cm;
+  height: 6cm;
   background-color: #F9690E;
+  background: -webkit-linear-gradient(#f9690e, #feefe6);
+  background: linear-gradient(#f9690e, #feefe6);
 }
 #header #logo {
   position: absolute;
   top: -1cm;
   left: 4cm;
-  width: 13cm;
-  height: 20cm;
+  width: 15cm;
+  height: 22cm;
   background-image: url('lib/images/Pot-Logo.svg');
   background-repeat: no-repeat;
   background-size: 100% auto;
+}
+#header #month {
+  position: absolute;
+  top: 4cm;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
 }
 #footer {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 2cm;
-  background-color: #F9690E;
+  height: 4cm;
+  background: -webkit-linear-gradient(#fcb183, #f9690e);
+  background: linear-gradient(#fcb183, #f9690e);
+  border-top-color: #fcb183;
 }
-#logo {
+#footer #open {
   position: absolute;
-  top: 0cm;
-  right: 1cm;
-  width: 5cm;
+  bottom: 1cm;
+  width: 100%;
   height: auto;
+  text-align: center;
+  font-size: 25px;
+  font-family: inherit;
+  font-weight: bold;
+}
+#footer #facebook {
+  position: absolute;
+  bottom: 3cm;
+  left: 7.25cm;
+  width: 6.25cm;
+  height: auto;
+  text-align: center;
+  font-size: 25px;
+  font-family: inherit;
+  font-weight: bold;
+  background-image: url('lib/images/fb-logo.svg');
+  background-position: left;
+  background-size: 0.95cm auto;
+  background-repeat: no-repeat;
 }
 table {
   position: absolute;
-  width: 16cm;
+  width: 18cm;
   height: auto;
-  left: 2.5cm;
+  left: 1.5cm;
   top: 6cm;
-  border: 1px solid #ddd;
+  border: 0.7px solid #D2D7D3;
   margin: 0;
   padding: 0;
   border-spacing: 0;
   border-collapse: collapse;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #fee0cd;
+  /* rgba(255, 255, 255, 0.6);*/
   font-size: 10pt;
 }
 table thead {
@@ -82,6 +113,7 @@ table thead {
 }
 table th {
   height: 0.6cm;
+  background-color: white;
 }
 table tr {
   display: table-row;
@@ -97,16 +129,14 @@ table td {
   height: 0.4cm;
 }
 table td.number {
-  background-color: black;
-  border-color: black;
+  background-color: #D35400;
   color: white;
   width: 0.2cm;
   border-right-color: white;
   text-align: right;
 }
 table td.day {
-  background-color: #ffc582;
-  border-color: #ffc582;
+  background-color: #F5AB35;
   border-left-color: white;
   color: black;
   width: 0.2cm;
@@ -114,7 +144,29 @@ table td.day {
 }
 table td.koch,
 table td.theke {
-  width: 2.5cm;
+  width: 3cm;
+}
+table td.aktion {
+  background-repeat: no-repeat;
+  background-size: 21%,21%;
+  background-position: center left;
+  border-color: #D2D7D3;
+}
+table td.aktion.party {
+  background-color: #e05906;
+  font-weight: bold;
+}
+table td.aktion.cl {
+  background-image: url('lib/images/cl-logo.svg');
+  text-align: right;
+}
+table td.aktion.cocktail {
+  background-image: url('lib/images/cocktail.svg');
+  text-align: right;
+}
+table td.aktion.jamsession {
+  background-image: url('lib/images/jamsession.svg');
+  text-align: right;
 }
 table td div.gericht {
   background-repeat: no-repeat;
@@ -136,6 +188,9 @@ table td div.gericht.fish {
 }
 table td div.gericht.cow {
   background-image: url('lib/images/animals/cow.svg');
+}
+table td div.gericht.veg {
+  background-image: url('lib/images/animals/veg.svg');
 }
 table td,
 table th {
