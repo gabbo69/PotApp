@@ -195,6 +195,9 @@ table td div.gericht.fish {
 table td div.gericht.cow {
   background-image: url('lib/images/animals/cow.svg');
 }
+table td div.gericht.veg {
+  background-image: url('lib/images/animals/veg.svg');
+}
 table td,
 table th {
   display: table-cell;
