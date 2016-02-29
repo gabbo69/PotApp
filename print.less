@@ -7,8 +7,10 @@ body {
 	hyphens: auto;
 }
 
+@factor: 2;
+
 @page {
-	size: 21cm 29.7cm;
+	size: 21cm*@factor 29.7cm*@factor;
 	margin: 0;
 	prince-bleed: 0mm;
 	prince-image-resolution: 300dpi;
@@ -19,8 +21,8 @@ body {
 	page-break-before: always;
 	position: relative;
 	overflow: hidden;
-	width: 21cm;
-	height: 29.7cm;
+	width: 21cm*@factor;
+	height: 29.7cm*@factor;
 }
 
 #mainPage {
@@ -34,37 +36,37 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 5.5cm;
+	height: 5.5cm*@factor;
 	background-color: #f9931b;
     //background: linear-gradient(#F9690E, #feefe6);
 	
 	#logo {
 		position: absolute;
-		top: -2cm;
-		left: 3cm;
-		width: 15cm;
-		height: 10cm;
+		top: -2cm*@factor;
+		left: 3cm*@factor;
+		width: 15cm*@factor;
+		height: 10cm*@factor;
 		background-image: url('lib/images/Pot-Logo.svg');
 		background-repeat: no-repeat;
 		background-size: 100% auto;
 	}
     #month {
         position: absolute;
-		top: 3.5cm;
+		top: 3.5cm*@factor;
         width: 100%;
         height: auto;
         text-align: center;
-        font-size: 35px;
+        font-size: 36pt;
         font-weight: bold;
     }
 	
 }
 #ohauslogo {
 		position: absolute;
-		top: 0.7cm;
-		right: 1.7cm;
-		width: 2.5cm;
-		height: 10cm;
+		top: 0.7cm*@factor;
+		right: 1.7cm*@factor;
+		width: 2.5cm*@factor;
+		height: 10cm*@factor;
 		background-image: url('lib/images/ohauslogo2.svg');
 		background-repeat: no-repeat;
 		background-size: 100% auto;
@@ -74,37 +76,37 @@ body {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 4cm;
+	height: 4cm*@factor;
     background: #f9931b;
     
     #open{
         position: absolute;
-        bottom: 0.4cm;
+        bottom: 0.4cm*@factor;
         width: 100%;
         height: auto;
         text-align: center;
-        font-size: 12pt;
+        font-size: 20pt;
         font-family: inherit;
     }
     #facebook{
         position: absolute;
-        bottom: 0.8cm;
-        left: 1.3cm;
+        bottom: 0.8cm*@factor;
+        left: 1.3cm*@factor;
         width: auto;
 		
-        height: 2cm;
+        height: 2cm*@factor;
         text-align: center;
-		line-height: 1cm;
+		line-height: 1cm*@factor;
 		vertical-align: middle;
-        font-size: 18pt;
+        font-size: 28pt;
         font-family: inherit;
         font-weight: bold;
         background-image: url('lib/images/fb-logo.svg');
         background-position: left;
-        background-size: auto 1cm;
+        background-size: auto 1cm*@factor;
         background-repeat: no-repeat;
-        padding-left: 1cm;
-		padding-top: 1.2cm;
+        padding-left: 1cm*@factor;
+		padding-top: 1.2cm*@factor;
     }
 }
 
@@ -112,17 +114,17 @@ body {
 
 table {
 	position: absolute;
-	width: 18cm;
+	width: 18cm*@factor;
 	height: auto;
-	left: 1.5cm;
-	top: 6cm;
+	left: 1.5cm*@factor;
+	top: 6cm*@factor;
 	border: 1px solid transparent;
 	margin: 0;  
 	padding: 0; 
 	border-spacing: 0;
 	border-collapse: collapse;
 	  /* rgba(255, 255, 255, 0.6);*/
-	font-size: 10pt;
+	font-size: 20pt;
 	thead {
 		display: table-header-group;
 		vertical-align: middle;
@@ -131,7 +133,7 @@ table {
 		background-color: rgba(249, 147, 27, 0.3);
 	}
 	th {
-		height: 0.6cm;
+		height: 0.6cm*@factor;
 		background-color: #f9931b;
 		border: 1px solid transparent;
 		border-bottom-color: white;
@@ -148,12 +150,12 @@ table {
 	}
 	td {
 		border: 1px solid transparent;
-		height: 0.4cm;
+		height: 0.6cm*@factor;
 		
 		
 		&.number {
 			background-color: #f9931b;
-			width: 0.2cm;
+			width: 0.2cm*@factor;
 			border-right-color: white;
 			text-align: right;
 			font-weight: bold;
@@ -163,13 +165,13 @@ table {
 			background-color: rgba(249, 147, 27, 0.7);
 //			border-left-color: white;
 			color: black;
-			width: 0.2cm;
+			width: 0.2cm*@factor;
 			text-align: left;
 		}
 		
 		&.koch,
 		&.theke {
-			width: 3cm;
+			width: 3cm*@factor;
 		}
         &.aktion {
         	background-repeat: no-repeat;
@@ -199,14 +201,11 @@ table {
 		
 		div.gericht {
 			background-repeat: no-repeat;
-			background-size: auto 70%;
+			background-size: auto 80%;
 			background-position: center left;
 
 			width: 100%;
 			height: 100%;
-			
-			padding-top: 0.05cm;
-			padding-left: 0.5cm;
 			
 			&.pic {
 				background-image: url('lib/images/animals/pic.svg');
@@ -231,7 +230,7 @@ table {
 		margin: 0;
 		padding: 0.06cm 0.13cm;
 		vertical-align: middle;
-		line-height: 0.4cm;
+		line-height: 0.8cm;
 		text-align: center;
 	}
 	input {
