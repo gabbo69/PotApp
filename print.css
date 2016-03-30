@@ -104,7 +104,6 @@ table {
   position: absolute;
   width: 36cm;
   height: auto;
-  left: 3cm;
   top: 12cm;
   border: 1px solid transparent;
   margin: 0;
@@ -166,15 +165,15 @@ table td.aktion.party {
 }
 table td.aktion.cl {
   background-image: url('lib/images/cl-logo.svg');
-  text-align: right;
+  text-align: center;
 }
 table td.aktion.cocktail {
   background-image: url('lib/images/cocktail.svg');
-  text-align: right;
+  text-align: center;
 }
 table td.aktion.jamsession {
   background-image: url('lib/images/jamsession.svg');
-  text-align: right;
+  text-align: center;
 }
 table td div.gericht {
   background-repeat: no-repeat;
